@@ -1,5 +1,5 @@
 #import all needed libraries
-import zip
+import zipfile
 import matplotlib.pyplot as plt 
 import seaborn as sns
 import numpy as np
@@ -130,3 +130,14 @@ def combination_r_squared(combos,target,df):
     rsquar_dict = dict(zip(ind,r_squared))
     return rsquar_dict
 
+def regular_test_p_vals(col_list):
+    p_list = []
+    for i in c_new[5:-2]:
+        _,p = stats.normaltest(kaggle_data_df_short[i])
+        p_list.append(p)
+    p_list
+
+def socrata_request(report,limit,source="data.cityofnewyork.us"):
+    client = Socrata(source,None)
+    results = client.get(report,limit=limit)
+    return pd.DataFrame(results)
