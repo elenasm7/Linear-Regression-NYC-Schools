@@ -20,43 +20,34 @@ new dataframe. They then return new columns that has been trandformed--the name 
 column gives the transformation.
 '''
 
-def log_transform(cols, df,new_df=None):
+def log_transform(cols, df,new_df):
     #logarithmic transformation
     trans_cols = []
     for i in cols:
         name = i+'_log'
         trans_cols.append(name)
-        if new_df != None:
-            new_df[name] = np.log(df[i])
-        else: 
-            df[name] = np.log(df[i])
+        new_df[name] = np.log(df[i])
     return trans_cols
     
-def cube_root_transform(cols, df,new_df=None):
+def cube_root_transform(cols, df,new_df):
     #cube root tranformation
     trans_cols = []
     for i in cols:
         name = i+'_cuberoot'
         trans_cols.append(name)
-        if new_df != None:
-            new_df[name] = df[i].apply(lambda x: x**(1/3))
-        else: 
-            df[name] = df[i].apply(lambda x: x**(1/3))
+        new_df[name] = df[i].apply(lambda x: x**(1/3))
     return trans_cols
 
-def sqrt_trandform(cols, df,new_df=None):
+def sqrt_trandform(cols, df,new_df):
     #square root transformation
     trans_cols = []
     for i in cols:
         name = i+'_sqrt'
         trans_cols.append(name)
-        if new_df != None:
-            new_df[name] = df[i].apply(lambda x: x**(1/2))
-        else: 
-            df[name] = df[i].apply(lambda x: x**(1/2))
+        new_df[name] = df[i].apply(lambda x: x**(1/2))
     return trans_cols
 
-def sqre_trandform(cols, df,new_df=None):
+def sqre_trandform(cols, df,new_df):
     '''
     sqaure transformation
     '''
@@ -64,22 +55,16 @@ def sqre_trandform(cols, df,new_df=None):
     for i in cols:
         name = i+'_squared'
         trans_cols.append(name)
-        if new_df != None:
-            new_df[name] = df[i].apply(lambda x: x**2)
-        else: 
-            df[name] = df[i].apply(lambda x: x**2)
+        new_df[name] = df[i].apply(lambda x: x**2)
     return trans_cols
 
-def recip_trandform(cols, df,new_df=None):
+def recip_trandform(cols, df,new_df):
     #reciprocal transformation
     trans_cols = []
     for i in cols:
         name = i+'_recip'
         trans_cols.append(name)
-        if new_df != None:
-            new_df[name] = df[i].apply(lambda x: 1/x)
-        else: 
-            df[name] = df[i].apply(lambda x: 1/x)
+        new_df[name] = df[i].apply(lambda x: 1/x)
     return trans_cols
 
 def make_subplots_scedasticity(numr,numc,dims,target,predictors,df,ylab,xlab,filename=None):
